@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 import model.bean.UtenteBean;
 import utils.DbConnection;
 
@@ -105,7 +106,7 @@ public class UtenteDao {
 			ps.setString(2, utenteBean.getCognomeUtente());
 			ps.setString(3, utenteBean.getInformazioniGeneraliUtente());
 			ps.setString(4, utenteBean.getEmailUtente());
-			ps.setString(5, utenteBean.getPasswordUtente());
+			ps.setString(5, BCrypt.hashpw(utenteBean.getPasswordUtente(), BCrypt.gensalt()));
 			ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataCreazioneUtente()));
 			ps.setTimestamp(7, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
 			ps.setBoolean(8, utenteBean.isFlgCancellatoUtente());
@@ -119,8 +120,8 @@ public class UtenteDao {
 			if (insertOutput == 1) {
 			    ResultSet rs = ps.getGeneratedKeys();
 			    if (rs.next()) {
-			        utenteBean.setIdUtente(rs.getLong(1));
-			        return utenteBean;
+			    	Long idNuovoUtente = rs.getLong(1);
+			        return findById(idNuovoUtente);
 			    }
 			}
 		} catch (SQLException e) {
@@ -182,16 +183,16 @@ public class UtenteDao {
 			e.printStackTrace();
 		}
         
-        int updateOutput = 0;
+        int trashOutput = 0;
 		try {
-			updateOutput = ps.executeUpdate();
+			trashOutput = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
         
         dbCon.closeConnection(con);
         
-        return updateOutput;
+        return trashOutput;
 	}
 	
 	public int deleteById(Long id) {

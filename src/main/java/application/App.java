@@ -43,10 +43,10 @@ public class App {
 		System.out.println("\nTEST INSERT:\n");
 		UtenteBean nuovoUtente = new UtenteBean();
 		
-		nuovoUtente.setNomeUtente("Nuovo");
-		nuovoUtente.setCognomeUtente("Utente");
-		nuovoUtente.setEmailUtente("nuovaaaUtente@mail.it");
-		nuovoUtente.setPasswordUtente("Password1!");
+		nuovoUtente.setNomeUtente("NEWer");
+		nuovoUtente.setCognomeUtente("TestUtente");
+		nuovoUtente.setEmailUtente("ytrytryrtyr@mail.it");
+		nuovoUtente.setPasswordUtente("Password1234!");
 		nuovoUtente.setInformazioniGeneraliUtente("info_generali");
 		nuovoUtente.setDataCreazioneUtente(LocalDateTime.now());
 		nuovoUtente.setDataModificaUtente(LocalDateTime.now());
@@ -55,6 +55,8 @@ public class App {
 		UtenteBean outputNuovoUtente = utenteDao.insert(nuovoUtente);
 		System.out.println(outputNuovoUtente);
 		
+		
+		/*
 		System.out.println("\nTEST UPDATE:");
 		utente.setNomeUtente("NomeUtenteUpdated");
 		int updateOutput = utenteDao.update(utente);
@@ -67,5 +69,6 @@ public class App {
 		System.out.println("\nTEST DELETE:");
 		int deleteOutput = utenteDao.deleteById(7L);
 		System.out.println("Delete Output: " + deleteOutput);
+		*/
 	}
 }

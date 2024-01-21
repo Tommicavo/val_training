@@ -95,6 +95,7 @@ public class UtenteBean {
                 ", Nome = " + getNomeUtente() +
                 ", Cognome = " + getCognomeUtente() +
                 ", Email = " + getEmailUtente() +
+                ", Password = " + getPasswordUtente() +
                 ", \n Informazioni Generali = " + getInformazioniGeneraliUtente() + "}\n";
     }
 	@Override
