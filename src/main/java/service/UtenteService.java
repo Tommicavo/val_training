@@ -6,14 +6,12 @@ import java.util.regex.Pattern;
 import model.bean.UtenteBean;
 
 public class UtenteService {
-	public void signin(UtenteBean utenteBean, List<UtenteBean> utenteBeans) {
+	public String signin(UtenteBean utenteBean, List<UtenteBean> utenteBeans) {
 		
 		// verifica che l'utente esista già
 		for (UtenteBean utente : utenteBeans) {
 			if (utente.getEmailUtente() == utenteBean.getEmailUtente()) {
-				System.out.println("L'utente con email '" + utenteBean.getEmailUtente() + "' è già iscritto");
-				return;
-			}
+				return "L'utente con email" + utenteBean.getEmailUtente()+ "è già iscritto";
 		}
 		
 		// validazione campi
