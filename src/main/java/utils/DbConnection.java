@@ -9,7 +9,7 @@ public class DbConnection {
 	private String username = "root";
 	private String password = "root";
 	private String url = "jdbc:mysql://localhost:3306/val_training";
-	private String driver = "com.mysql.jdbc.Driver";
+	private String driver = "com.mysql.cj.jdbc.Driver";
 
 	public Connection getConnection() {
 
