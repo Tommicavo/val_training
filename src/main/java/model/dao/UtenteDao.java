@@ -53,7 +53,7 @@ public class UtenteDao {
 	}
 	
 	public UtenteBean findById(Long id) {
-		String query = "SELECT * FROM utente WHERE id_utente = ?";
+		String query = "SELECT * FROM utente WHERE id_utente=?";
 		
 		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
@@ -61,7 +61,6 @@ public class UtenteDao {
 		PreparedStatement ps = null;
 		try {
 			ps = con.prepareStatement(query);
-			
 			ps.setLong(1, id);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,6 +90,74 @@ public class UtenteDao {
 		
 		return utenteBean;
 	}
+	
+	public boolean findByEmail(String email) {
+	    String query = "SELECT COUNT(*) FROM utente WHERE email=?";
+	    
+	    DbConnection dbCon = new DbConnection();
+	    Connection con = dbCon.getConnection();
+	    
+	    PreparedStatement ps = null;
+	    try {
+	        ps = con.prepareStatement(query);
+	        ps.setString(1, email);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    ResultSet rs;
+	    int count = 0;
+	    try {
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    dbCon.closeConnection(con);
+	    
+	    return count > 0;
+	}
+	
+    public UtenteBean findByEmailAndPassword(UtenteBean utenteBean) {
+        String query = "SELECT * FROM utente WHERE email=? AND password=?";
+        
+        DbConnection dbCon = new DbConnection();
+        Connection con = dbCon.getConnection();
+        
+        PreparedStatement ps = null;
+        UtenteBean loggedUtenteBean = null;
+        
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1, utenteBean.getEmailUtente());
+            ps.setString(2, BCrypt.hashpw(utenteBean.getPasswordUtente(), BCrypt.gensalt()));
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+            	loggedUtenteBean = new UtenteBean();
+            	loggedUtenteBean.setIdUtente(rs.getLong("id_utente"));
+            	loggedUtenteBean.setNomeUtente(rs.getString("nome"));
+            	loggedUtenteBean.setCognomeUtente(rs.getString("cognome"));
+            	loggedUtenteBean.setInformazioniGeneraliUtente(rs.getString("informazioni_generali"));
+            	loggedUtenteBean.setEmailUtente(rs.getString("email"));
+            	loggedUtenteBean.setPasswordUtente(rs.getString("password"));
+            	loggedUtenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
+            	loggedUtenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
+            	loggedUtenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbCon.closeConnection(con);
+        }
+
+        return loggedUtenteBean;
+    }
 	
 	public UtenteBean insert(UtenteBean utenteBean) {
 		String query = "INSERT INTO utente (nome, cognome, informazioni_generali, email, password, data_creazione, data_modifica, flg_cancellato) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";

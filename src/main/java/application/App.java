@@ -43,9 +43,9 @@ public class App {
 		System.out.println("\nTEST INSERT:\n");
 		UtenteBean nuovoUtente = new UtenteBean();
 		
-		nuovoUtente.setNomeUtente("NEWer");
+		nuovoUtente.setNomeUtente("testProperties");
 		nuovoUtente.setCognomeUtente("TestUtente");
-		nuovoUtente.setEmailUtente("ytrytryrtyr@mail.it");
+		nuovoUtente.setEmailUtente("wera@mail.it");
 		nuovoUtente.setPasswordUtente("Password1234!");
 		nuovoUtente.setInformazioniGeneraliUtente("info_generali");
 		nuovoUtente.setDataCreazioneUtente(LocalDateTime.now());
