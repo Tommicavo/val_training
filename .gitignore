@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 Eclipse Files
+=======
+# GITIGNORE
+
+# Eclipse Files
+>>>>>>> develop
 .classpath
 .project
 .settings/
 
+<<<<<<< HEAD
 Compiled Files
+=======
+# Compiled Files
+>>>>>>> develop
 bin/
 target/
 *.class
 *.jar
 
+<<<<<<< HEAD
 Logs
 *.log
 
@@ -16,6 +27,15 @@ Properties
 *.properties
 
 Package Files
+=======
+# Logs
+*.log
+
+# Properties
+ 
+
+# Package Files
+>>>>>>> develop
 *.jar
 *.war
 *.nar
@@ -24,12 +44,17 @@ Package Files
 *.tar.gz
 *.rar
 
+<<<<<<< HEAD
 Temporary Files
+=======
+# Temporary Files
+>>>>>>> develop
 .tmp/
 .temp/
 *.tmp
 *.swp
 
+<<<<<<< HEAD
 BlueJ files
 .ctxt
 
@@ -39,3 +64,15 @@ Mobile Tools for Java (J2ME)
 virtual machine crash logs
 hs_err_pid
 replay_pid*
+=======
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+/bin/
+>>>>>>> develop
