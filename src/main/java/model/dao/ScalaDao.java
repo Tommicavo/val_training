@@ -16,7 +16,7 @@ public class ScalaDao {
 	public List<ScalaBean> findAll() throws SQLException {
 		String query = "SELECT * FROM scala;";
 
-		DbConnection dbCon = new DbConnection();
+		DbConnection dbCon = new DbConnection(); //connessione al db
 		Connection con = dbCon.getConnection();
 
 		Statement st = con.createStatement(); //non c'è il punto di domanda nella query
@@ -171,5 +171,4 @@ public class ScalaDao {
 		return updateOutput;
 	}
 }
-
-
+    
