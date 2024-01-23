@@ -12,7 +12,7 @@ import java.util.List;
 import model.bean.SezioneBean;
 import utils.DbConnection;
 // test
-public class SectionDao {
+public class SezioneDao {
 	
 	public List<SezioneBean> findAll() {
 		String query = "SELECT * FROM sezione;";
