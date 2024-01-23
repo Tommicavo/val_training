@@ -32,20 +32,21 @@ public class App {
 	 * UtenteService utenteService = new UtenteService();
 	 * utenteService.signin(utente_3, utenti); } */
 	
-	ScalaDao scalaDao = new ScalaDao();
-	ScalaBean scalaBean = new ScalaBean();
-	
-	//setddhvgv
+		  //ScalaDao scalaDao = new ScalaDao();
+	/*ScalaBean scalaBean = new ScalaBean();
+
 	scalaBean.setIdScala(2l);
 	scalaBean.setTitoloScala("Test");
 	scalaBean.setDescrizioneScala("testtesttest");
-	scalaBean.setFlgCancellatoScala(false);
+	scalaBean.setFlgCancellatoScala(false); */
 	
+  //try {
+		//System.out.println("funziona" + scalaDao.findById(1l));
+	//System.out.println("funziona" + scalaDao.addScala("titolo", "titolo"));
+	//System.out.println("funziona" + scalaDao.removeById(8l));
+	//System.out.println("funziona" + scalaDao.updateScala(scalaBean));
 	
-		//System.out.println("funziona" + scalaDao.findById(3l));
-		//System.out.println("funziona" + scalaDao.addScala("titolo", "titolo"));
-		//System.out.println("funziona" + scalaDao.removeById(8l));
-		//System.out.println("funziona" + scalaDao.updateScala(scalaBean));
-	
-
-}}
+	//} catch (SQLException e) {
+	// System.out.println("error");
+	//}
+	}} 

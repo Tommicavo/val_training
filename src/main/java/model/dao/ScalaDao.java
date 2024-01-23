@@ -19,7 +19,7 @@ public class ScalaDao {
 		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 
-		Statement st = con.createStatement();
+		Statement st = con.createStatement(); //non c'è il punto di domanda nella query
 
 		ResultSet rs = st.executeQuery(query);
 
@@ -49,7 +49,8 @@ public class ScalaDao {
 		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 
-		PreparedStatement ps = con.prepareStatement(query);
+		PreparedStatement ps = con.prepareStatement(query); //c'è il punto di domanda nella query
+
 		ps.setLong(1, id);
 
 		ResultSet rs = ps.executeQuery();
@@ -171,4 +172,4 @@ public class ScalaDao {
 	}
 }
 
-//saudbaudbaudba
+
