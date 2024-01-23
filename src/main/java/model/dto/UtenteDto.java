@@ -9,6 +9,8 @@ public class UtenteDto {
 	private String emailUtente;
 	private String passwordUtente;
 	private String informazioniGeneraliUtente;
+	private Long idRuolo;
+	private Long idGruppo;
 	
 	// Costruttori
 	public UtenteDto() {}
@@ -19,6 +21,13 @@ public class UtenteDto {
 		this.emailUtente = emailUtente;
 		this.passwordUtente = passwordUtente;
 		this.informazioniGeneraliUtente = informazioniGeneraliUtente;
+		this.idRuolo = 2L;
+	}
+	
+	public UtenteDto(Long idUtente, String nomeUtente, String cognomeUtente, String emailUtente, String passwordUtente, String informazioniGeneraliUtente, Long idRuolo, Long idGruppo) {
+		this(idUtente, nomeUtente, cognomeUtente, emailUtente, passwordUtente, informazioniGeneraliUtente);
+		this.idRuolo = idRuolo;
+		this.idGruppo = idGruppo;
 	}
 	
 	// Getters e Setters
@@ -57,5 +66,17 @@ public class UtenteDto {
 	}
 	public void setInformazioniGeneraliUtente(String informazioniGeneraliUtente) {
 		this.informazioniGeneraliUtente = informazioniGeneraliUtente;
+	}
+	public Long getIdRuolo() {
+		return idRuolo;
+	}
+	public void setIdRuolo(Long idRuolo) {
+		this.idRuolo = idRuolo;
+	}
+	public Long getIdGruppo() {
+		return idGruppo;
+	}
+	public void setIdGruppo(Long idGruppo) {
+		this.idGruppo = idGruppo;
 	}
 }

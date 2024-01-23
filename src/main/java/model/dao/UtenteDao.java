@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
@@ -43,7 +44,6 @@ public class UtenteDao {
 				utenti.add(utenteBean);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 		
@@ -174,8 +174,8 @@ public class UtenteDao {
 			ps.setString(3, utenteBean.getInformazioniGeneraliUtente());
 			ps.setString(4, utenteBean.getEmailUtente());
 			ps.setString(5, BCrypt.hashpw(utenteBean.getPasswordUtente(), BCrypt.gensalt()));
-			ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataCreazioneUtente()));
-			ps.setTimestamp(7, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
+			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setBoolean(8, utenteBean.isFlgCancellatoUtente());
 		} catch (SQLException e) {
 			e.printStackTrace();
