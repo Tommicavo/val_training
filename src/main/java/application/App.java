@@ -11,7 +11,7 @@ import model.dao.UtenteDao;
 public class App {
 	public static void main(String[] args) {	
 		
-		List<UtenteBean> utenti = new ArrayList<>();
+	List<UtenteBean> utenti = new ArrayList<>();
 		
 		UtenteBean utente_1 = new UtenteBean(1L, "Mario", "Rossi", "mario@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
 		UtenteBean utente_2 = new UtenteBean(2L, "Giulio", "Bianchi", "giulio@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);

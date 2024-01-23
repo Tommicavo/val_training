@@ -19,7 +19,7 @@ import exception.InvalidNomeException;
 import exception.InvalidPasswordException;
 
 public class UtenteService {
-	
+
 	public UtenteBean signin(UtenteDto utenteDto) throws ExistingUtenteException, EmptyNomeException, InvalidNomeException, EmptyCognomeException, InvalidCognomeException, InvalidEmailException, InvalidPasswordException, InvalidDataCreazioneException, InvalidDataModificaException {
 		
 		UtenteDao utenteDao = new UtenteDao();

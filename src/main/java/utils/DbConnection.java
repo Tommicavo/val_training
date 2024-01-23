@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-
+	
     private String username = AppConfig.getDbUsername();
     private String password = AppConfig.getDbPassword();
     private String url = AppConfig.getDbUrl();
