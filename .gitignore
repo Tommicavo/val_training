@@ -4,6 +4,7 @@
 
 #GITIGNORE
 #Eclipse Files
+Eclipse Files
 # GITIGNORE
 
 # Eclipse Files
@@ -12,6 +13,7 @@
 .settings/
 
 #Compiled Files
+Compiled Files
 # Compiled Files
 bin/
 target/
@@ -25,6 +27,13 @@ target/
 *.properties
 
 #Package Files
+Logs
+*.log
+
+Properties
+*.properties
+
+Package Files
 # Logs
 *.log
 
@@ -41,6 +50,7 @@ target/
 *.rar
 
 #Temporary Files
+Temporary Files
 # Temporary Files
 .tmp/
 .temp/
@@ -58,6 +68,16 @@ hs_err_pid
 replay_pid*
 
 src/main/java/resourcessrc/main/java/resourcessrc/main/java/resources# BlueJ files
+BlueJ files
+.ctxt
+
+Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+virtual machine crash logs
+hs_err_pid
+replay_pid*
+# BlueJ files
 *.ctxt
 
 # Mobile Tools for Java (J2ME)

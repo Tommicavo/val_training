@@ -11,6 +11,7 @@ public class DbConnection {
     private String url = AppConfig.getDbUrl();
     private String driver = AppConfig.getDbDriver();
 
+
 	public Connection getConnection() {
 
 		Connection con = null;
