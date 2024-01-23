@@ -36,11 +36,11 @@ public class UtenteBean {
 	}
 	
 	public UtenteBean(Long idUtente, String nomeUtente, String cognomeUtente, String emailUtente, String passwordUtente, String informazioniGeneraliUtente,
-			LocalDateTime dataCreazioneUtente, LocalDateTime dataModificaUtente, boolean flgCancellatoUtente, Long idRuolo, Long idGruppo) {
-		this(idUtente, nomeUtente, cognomeUtente, emailUtente, passwordUtente, informazioniGeneraliUtente, dataCreazioneUtente, dataModificaUtente, flgCancellatoUtente);
-		this.idRuolo = idRuolo;
-		this.idGruppo = idGruppo;
-	}
+            LocalDateTime dataCreazioneUtente, LocalDateTime dataModificaUtente, boolean flgCancellatoUtente, Long idRuolo, Long idGruppo) {
+        this(idUtente, nomeUtente, cognomeUtente, emailUtente, passwordUtente, informazioniGeneraliUtente, dataCreazioneUtente, dataModificaUtente, flgCancellatoUtente);
+        this.idRuolo = idRuolo;
+        this.idGruppo = idGruppo;
+    }
 
 	// Getters e Setters
 	public Long getIdUtente() {
@@ -96,20 +96,16 @@ public class UtenteBean {
 	}
 	public void setFlgCancellatoUtente(boolean flgCancellatoUtente) {
 		this.flgCancellatoUtente = flgCancellatoUtente;
-	}
-
+	}	
 	public Long getIdRuolo() {
 		return idRuolo;
 	}
-
 	public void setIdRuolo(Long idRuolo) {
 		this.idRuolo = idRuolo;
 	}
-
 	public Long getIdGruppo() {
 		return idGruppo;
 	}
-
 	public void setIdGruppo(Long idGruppo) {
 		this.idGruppo = idGruppo;
 	}
@@ -121,6 +117,7 @@ public class UtenteBean {
                 ", Nome = " + getNomeUtente() +
                 ", Cognome = " + getCognomeUtente() +
                 ", Email = " + getEmailUtente() +
+                ", Password = " + getPasswordUtente() +
                 ", \n Informazioni Generali = " + getInformazioniGeneraliUtente() + "}\n";
     }
 	@Override
