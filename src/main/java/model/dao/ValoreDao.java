@@ -85,11 +85,11 @@ public class ValoreDao {
             if (valid != 0) {
                 validS = "valore eliminato";
             } else {
-                validS = "C'è stato un problema";
+                validS = "Valore non eliminato";
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            validS = "C'è stato un problema";
+            validS = "Errore nell'operazione eseguita";
         }
 
         dbCon.closeConnection(con);
@@ -109,9 +109,9 @@ public class ValoreDao {
 		int valid = ps.executeUpdate();
 		dbCon.closeConnection(con);
 		if (valid != 0) {
-			return "Aggiunto";
+			return "Valore aggiunto";
 		} else {
-			return "C'è stato un problema";
+			return "Errore nell'operazione eseguita";
 		}
 
 	}
