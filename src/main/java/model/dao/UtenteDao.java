@@ -158,7 +158,7 @@ public class UtenteDao {
 
         return loggedUtenteBean;
     }
-	
+	// provaa
 	public UtenteBean insert(UtenteBean utenteBean) {
 		String query = "INSERT INTO utente (nome, cognome, informazioni_generali, email, password, data_creazione, data_modifica, flg_cancellato) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		
