@@ -1,5 +1,9 @@
 *.MF
 *.MF
+*.properties
+
+#GITIGNORE
+#Eclipse Files
 Eclipse Files
 # GITIGNORE
 
@@ -8,6 +12,7 @@ Eclipse Files
 .project
 .settings/
 
+#Compiled Files
 Compiled Files
 # Compiled Files
 bin/
@@ -15,6 +20,13 @@ target/
 *.class
 *.jar
 
+#Logs
+*.log
+
+#Properties
+*.properties
+
+#Package Files
 Logs
 *.log
 
@@ -37,6 +49,7 @@ Package Files
 *.tar.gz
 *.rar
 
+#Temporary Files
 Temporary Files
 # Temporary Files
 >>>>>>> develop
@@ -45,6 +58,17 @@ Temporary Files
 *.tmp
 *.swp
 
+#BlueJ files
+.ctxt
+
+#Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+#virtual machine crash logs
+hs_err_pid
+replay_pid*
+
+src/main/java/resourcessrc/main/java/resourcessrc/main/java/resources# BlueJ files
 BlueJ files
 .ctxt
 
