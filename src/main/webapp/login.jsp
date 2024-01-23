@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 <body>
     <h2>Login</h2>
     
-    <form action="LoginServlet.jsp" method="POST">    
+    <form action="<%=request.getContextPath()%>/login" method="POST">    
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Inserisci l'email"><br>
     
