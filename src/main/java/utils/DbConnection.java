@@ -18,6 +18,7 @@ public class DbConnection {
     private String driver = AppConfig.getDbDriver();
 >>>>>>> develop
 
+
 	public Connection getConnection() {
 
 		Connection con = null;
