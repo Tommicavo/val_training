@@ -14,11 +14,9 @@ import model.dto.UtenteDto;
 import service.UtenteService;
 
 @WebServlet("/login")
-<<<<<<<< HEAD:src/main/java/servlet/LoginServlet.java
-public class LoginServlet extends HttpServlet {
-========
+
 public class Login extends HttpServlet {
->>>>>>>> develop:src/main/java/servlet/Login.java
+
 
     private static final long serialVersionUID = 1L;
 
@@ -33,20 +31,7 @@ public class Login extends HttpServlet {
 
         UtenteService utenteService = new UtenteService();
         UtenteBean utenteLoggato = null;
-<<<<<<<< HEAD:src/main/java/servlet/LoginServlet.java
-        try {
-            utenteLoggato = utenteService.login(utenteDto);
 
-            if(utenteLoggato != null) response.sendRedirect("login.jsp"); //redirect alla pagina
-            else {
-                response.sendRedirect("login.jsp");
-            }
-
-        } catch (InvalidEmailException | InvalidPasswordException e) {
-            e.printStackTrace();
-        }
-
-========
 		try {
 			utenteLoggato = utenteService.login(utenteDto);
 			
@@ -59,7 +44,6 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		}
 		
->>>>>>>> develop:src/main/java/servlet/Login.java
         System.out.println("Login Servlet: " + utenteLoggato);
     }
 }
