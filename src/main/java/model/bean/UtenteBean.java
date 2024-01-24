@@ -15,6 +15,8 @@ public class UtenteBean {
 	private LocalDateTime dataCreazioneUtente;
 	private LocalDateTime dataModificaUtente;
 	private boolean flgCancellatoUtente;
+	private Long idRuolo;
+	private Long idGruppo;
 	
 	// Costruttori
 	public UtenteBean() {}
@@ -30,7 +32,15 @@ public class UtenteBean {
 		this.dataCreazioneUtente = dataCreazioneUtente;
 		this.dataModificaUtente = dataModificaUtente;
 		this.flgCancellatoUtente = flgCancellatoUtente;
+		this.idRuolo = 1L;
 	}
+	
+	public UtenteBean(Long idUtente, String nomeUtente, String cognomeUtente, String emailUtente, String passwordUtente, String informazioniGeneraliUtente,
+            LocalDateTime dataCreazioneUtente, LocalDateTime dataModificaUtente, boolean flgCancellatoUtente, Long idRuolo, Long idGruppo) {
+        this(idUtente, nomeUtente, cognomeUtente, emailUtente, passwordUtente, informazioniGeneraliUtente, dataCreazioneUtente, dataModificaUtente, flgCancellatoUtente);
+        this.idRuolo = idRuolo;
+        this.idGruppo = idGruppo;
+    }
 
 	// Getters e Setters
 	public Long getIdUtente() {
@@ -86,6 +96,18 @@ public class UtenteBean {
 	}
 	public void setFlgCancellatoUtente(boolean flgCancellatoUtente) {
 		this.flgCancellatoUtente = flgCancellatoUtente;
+	}	
+	public Long getIdRuolo() {
+		return idRuolo;
+	}
+	public void setIdRuolo(Long idRuolo) {
+		this.idRuolo = idRuolo;
+	}
+	public Long getIdGruppo() {
+		return idGruppo;
+	}
+	public void setIdGruppo(Long idGruppo) {
+		this.idGruppo = idGruppo;
 	}
 
 	@Override
@@ -95,6 +117,7 @@ public class UtenteBean {
                 ", Nome = " + getNomeUtente() +
                 ", Cognome = " + getCognomeUtente() +
                 ", Email = " + getEmailUtente() +
+                ", Password = " + getPasswordUtente() +
                 ", \n Informazioni Generali = " + getInformazioniGeneraliUtente() + "}\n";
     }
 	@Override
