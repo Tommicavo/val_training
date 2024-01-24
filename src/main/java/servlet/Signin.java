@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import model.bean.UtenteBean;
 import model.dto.UtenteDto;
 import service.UtenteService;
 
+@WebServlet("/Signin")
 public class Signin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +42,10 @@ public class Signin extends HttpServlet {
         UtenteBean nuovoUtente = null;
 		try {
 			nuovoUtente = utenteService.signin(utenteDto);
+			if(nuovoUtente != null) response.sendRedirect("index.jsp"); //redirect alla pagina
+			else {
+				response.sendRedirect("signup.jsp");
+			}
 		} catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
 				| InvalidCognomeException | InvalidEmailException | InvalidPasswordException
 				| InvalidDataCreazioneException | InvalidDataModificaException e) {
