@@ -1,7 +1,8 @@
-package utils.servlet;
+package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import model.bean.UtenteBean;
 import model.dto.UtenteDto;
 import service.UtenteService;
 
+@WebServlet("/SigninServlet")
 public class SigninServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -47,5 +49,7 @@ public class SigninServlet extends HttpServlet {
 		}
 
         System.out.println("SigninServlet: " + nuovoUtente);
+        
+        response.sendRedirect(request.getContextPath() + "/ShowServlet?id=" + nuovoUtente.getIdUtente());
     }
 }

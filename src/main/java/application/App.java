@@ -1,33 +1,36 @@
 package application;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import exception.EmptyCognomeException;
+import exception.EmptyNomeException;
+import exception.ExistingUtenteException;
+import exception.InvalidCognomeException;
+import exception.InvalidDataCreazioneException;
+import exception.InvalidDataModificaException;
+import exception.InvalidEmailException;
+import exception.InvalidNomeException;
+import exception.InvalidPasswordException;
 import model.bean.UtenteBean;
 import model.dao.UtenteDao;
-// import service.UtenteService;
+import model.dto.UtenteDto;
+import service.UtenteService;
 
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExistingUtenteException, EmptyNomeException, InvalidNomeException, EmptyCognomeException, InvalidCognomeException, InvalidEmailException, InvalidPasswordException, InvalidDataCreazioneException, InvalidDataModificaException {
 		
-		//List<UtenteBean> utenti = new ArrayList<>();
-		//List<GruppoBean> gruppi = new ArrayList<>();
+		List<UtenteBean> utenti = new ArrayList<>();
 		
-		//UtenteBean utente_1 = new UtenteBean(1L, "Mario", "Rossi", "mario@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
-		//UtenteBean utente_2 = new UtenteBean(2L, "Giulio", "Bianchi", "giulio@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
-		//UtenteBean utente_3 = new UtenteBean(3L, "Anna", "Verdi", "anna@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
 		/*
-		utenti.add(utente_1);
-		utenti.add(utente_2);
-		
-		// Test Service
-		UtenteService utenteService = new UtenteService();
-		utenteService.signin(utente_3, utenti);
+		UtenteBean utente_1 = new UtenteBean(1L, "Mario", "Rossi", "mario@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
+		UtenteBean utente_2 = new UtenteBean(2L, "Giulio", "Bianchi", "giulio@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
+		UtenteBean utente_3 = new UtenteBean(3L, "Anna", "Verdi", "anna@mail.it", "Password1!", "info generali", LocalDateTime.now(), LocalDateTime.now(), false);
 		*/
 		
-		// Test Dao
-		/*
 		UtenteDao utenteDao = new UtenteDao();
 		
 		System.out.println("\nTEST FIND ALL:\n");
@@ -41,14 +44,14 @@ public class App {
 		utente = utenteDao.findById(1L);
 		System.out.println(utente);
 		
-		
+		/*
 		System.out.println("\nTEST INSERT:\n");
 		UtenteBean nuovoUtente = new UtenteBean();
 		
-		nuovoUtente.setNomeUtente("testProperties");
-		nuovoUtente.setCognomeUtente("TestUtente");
-		nuovoUtente.setEmailUtente("wera@mail.it");
-		nuovoUtente.setPasswordUtente("Password1234!");
+		nuovoUtente.setNomeUtente("nuovo");
+		nuovoUtente.setCognomeUtente("utente");
+		nuovoUtente.setEmailUtente("mail_1@mail.it");
+		nuovoUtente.setPasswordUtente("Password1!");
 		nuovoUtente.setInformazioniGeneraliUtente("info_generali");
 		nuovoUtente.setDataCreazioneUtente(LocalDateTime.now());
 		nuovoUtente.setDataModificaUtente(LocalDateTime.now());
@@ -56,9 +59,7 @@ public class App {
 		
 		UtenteBean outputNuovoUtente = utenteDao.insert(nuovoUtente);
 		System.out.println(outputNuovoUtente);
-		
-		
-		/*
+
 		System.out.println("\nTEST UPDATE:");
 		utente.setNomeUtente("NomeUtenteUpdated");
 		int updateOutput = utenteDao.update(utente);
@@ -72,5 +73,27 @@ public class App {
 		int deleteOutput = utenteDao.deleteById(7L);
 		System.out.println("Delete Output: " + deleteOutput);
 		*/
+		
+		
+		// TEST SIGNIN
+		UtenteDto newUtente = new UtenteDto();
+		newUtente.setNomeUtente("Nome");
+		newUtente.setCognomeUtente("Cognome");
+		newUtente.setEmailUtente("nuova_email_1@mail.it");
+		newUtente.setPasswordUtente("Password1!");
+		
+		UtenteService utenteService = new UtenteService();
+		UtenteBean utenteIscritto = new UtenteBean();
+		utenteIscritto = utenteService.signin(newUtente);
+		System.out.println("TEST SIGNIN:\n" + utenteIscritto);
+		
+		// TEST LOGIN
+		UtenteDto existingUtente= new UtenteDto();
+		existingUtente.setEmailUtente("nuova_email_1@mail.it");
+		existingUtente.setPasswordUtente("Password1!");
+		
+		UtenteBean utenteLoggato = new UtenteBean();
+		utenteLoggato = utenteService.login(existingUtente);
+		System.out.println("TEST LOGIN:\n" + utenteLoggato);
 	}
 }
