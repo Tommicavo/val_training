@@ -31,12 +31,14 @@ public class SigninServlet extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String informazioniGenerali = request.getParameter("informazioni_generali");
 
         UtenteDto utenteDto = new UtenteDto();
         utenteDto.setNomeUtente(nome);
         utenteDto.setCognomeUtente(cognome);
         utenteDto.setEmailUtente(email);
         utenteDto.setPasswordUtente(password);
+        utenteDto.setInformazioniGeneraliUtente(informazioniGenerali);
 
         UtenteService utenteService = new UtenteService();
         UtenteBean nuovoUtente = null;

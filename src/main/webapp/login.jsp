@@ -9,7 +9,6 @@
 <body>
     <div class="container">
         <h2 class="text-center py-3">Login</h2>
-        
         <form action="/val_training_test/LoginServlet" method="POST">    
             <div class="mb-3">
                 <label class="form-label" for="email">Email:</label>
@@ -21,7 +20,10 @@
                 <input class="form-control" type="password" id="password" name="password" placeholder="Inserisci la password">
             </div>
         
-            <button class="btn btn-primary" type="submit">Login</button>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-success" type="submit">Login</button>
+                <a class="btn btn-primary" href="index.jsp">Home Page</a>
+            </div>
         </form>
     </div>
 </body>

@@ -30,8 +30,16 @@
                     <label class="form-label" for="password">Password:</label>
                     <input class="form-control" type="password" id="password" name="password" placeholder="Inserisci la password">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="informazioni_generali">Informazioni Generali:</label>
+                    <textarea class="form-control" id="informazioni_generali" name="informazioni_generali"></textarea>
+                </div>
             
-                <button class="btn btn-primary" type="submit">Signin</button>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-success" type="submit">Signin</button>
+                    <a class="btn btn-primary" href="index.jsp">Home Page</a>
+                </div>
             </form>
         </div>
     </body>
