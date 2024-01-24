@@ -1,4 +1,4 @@
-package utils.servlet;
+package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import model.dto.UtenteDto;
 import service.UtenteService;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

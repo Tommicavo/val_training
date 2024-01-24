@@ -1,4 +1,4 @@
-package utils.servlet;
+package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import model.bean.UtenteBean;
 import model.dto.UtenteDto;
 import service.UtenteService;
 
-public class SigninServlet extends HttpServlet {
+public class Signin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
