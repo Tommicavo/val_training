@@ -1,10 +1,20 @@
+*.MF
+*.MF
+*.properties
+
 #GITIGNORE
 #Eclipse Files
+Eclipse Files
+# GITIGNORE
+
+# Eclipse Files
 .classpath
 .project
 .settings/
 
 #Compiled Files
+Compiled Files
+# Compiled Files
 bin/
 target/
 *.class
@@ -17,6 +27,20 @@ target/
 *.properties
 
 #Package Files
+Logs
+*.log
+
+Properties
+*.properties
+
+Package Files
+# Logs
+*.log
+
+# Properties
+ 
+
+# Package Files
 *.jar
 *.war
 *.nar
@@ -26,6 +50,9 @@ target/
 *.rar
 
 #Temporary Files
+Temporary Files
+# Temporary Files
+>>>>>>> develop
 .tmp/
 .temp/
 *.tmp
@@ -40,3 +67,24 @@ target/
 #virtual machine crash logs
 hs_err_pid
 replay_pid*
+
+src/main/java/resourcessrc/main/java/resourcessrc/main/java/resources# BlueJ files
+BlueJ files
+.ctxt
+
+Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+virtual machine crash logs
+hs_err_pid
+replay_pid*
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# virtual machine crash logs
+hs_err_pid*
+replay_pid*
+/bin/
