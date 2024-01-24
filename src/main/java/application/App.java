@@ -27,8 +27,7 @@ public class App {
 		
 		// Test Service
 		UtenteService utenteService = new UtenteService();
-		utenteService.signin(utente_3, utenti);
-		
+		utenteService.signin(utente_3, utenti);	
 		
 		// Test Dao
 		UtenteDao utenteDao = new UtenteDao();
