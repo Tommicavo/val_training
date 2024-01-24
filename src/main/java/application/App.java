@@ -9,6 +9,8 @@ import model.dao.UtenteDao;
 // import service.UtenteService;
 
 public class App {
+	
+	public static void main(String[] args) {
 		
 	List<UtenteBean> utenti = new ArrayList<>();
 		
@@ -23,7 +25,6 @@ public class App {
 		// Test Service
 		UtenteService utenteService = new UtenteService();
 		utenteService.signin(utente_3, utenti);
-		*/
 		
 		// Test Dao
 		UtenteDao utenteDao = new UtenteDao();

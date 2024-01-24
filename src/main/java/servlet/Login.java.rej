@@ -1,0 +1,11 @@
+diff a/src/main/java/servlet/Login.java b/src/main/java/servlet/Login.java	(rejected hunks)
+@@ -0,6 +0,9 @@
+ import service.UtenteService;
+ 
+ @WebServlet("/login")
++<<<<<<<< HEAD:src/main/java/servlet/LoginServlet.java
++public class LoginServlet extends HttpServlet {
++========
+ public class Login extends HttpServlet {
+ >>>>>>>> develop:src/main/java/servlet/Login.java
+ 
