@@ -10,7 +10,7 @@ import java.util.List;
 import model.bean.UtenteBean;
 import utils.DbConnection;
 
-public class UserDao {
+public class UtenteDao {
 	
 	public List<UtenteBean> findAll() throws SQLException {
 		String query = "SELECT * FROM utente;";
