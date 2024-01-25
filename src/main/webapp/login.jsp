@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +11,29 @@
 <body>
     <div class="container">
         <h2 class="text-center py-3">Login</h2>
-        <form action="/val_training_test/LoginServlet" method="POST">    
+
+        <% Map<String, String> errorMessages = (Map<String, String>) request.getAttribute("errorMessages"); %>
+        <% if (errorMessages == null) { errorMessages = new HashMap<>(); } %>
+
+        <form action="/val_training_test/LoginServlet" method="POST" novalidate>    
             <div class="mb-3">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" id="email" name="email" placeholder="Inserisci l'email">
+                <input class="form-control" type="email" id="email" name="email" placeholder="Inserisci l'email"
+                value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>">
+                <% String invalidEmailError = errorMessages.get("invalidEmailError"); %>
+                <% if (invalidEmailError != null && !invalidEmailError.isEmpty()) { %>
+                    <small class="text-danger"><%= invalidEmailError %></small>
+                <% } %>
             </div>
-        
+
             <div class="mb-3">
                 <label class="form-label" for="password">Password:</label>
-                <input class="form-control" type="password" id="password" name="password" placeholder="Inserisci la password">
+                <input class="form-control" type="password" id="password" name="password" placeholder="Inserisci la password"
+                value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>">
+                <% String invalidPasswordError = errorMessages.get("invalidPasswordError"); %>
+                <% if (invalidPasswordError != null && !invalidPasswordError.isEmpty()) { %>
+                    <small class="text-danger"><%= invalidPasswordError %></small>
+                <% } %>
             </div>
         
             <div class="d-flex justify-content-between">
