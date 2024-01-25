@@ -1,11 +1,14 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import exception.InvalidEmailException;
 import exception.InvalidPasswordException;
@@ -23,6 +26,10 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+         Logger logger = Logger.getLogger(Login.class.getName());
+         
+         
+        
         UtenteDto utenteDto = new UtenteDto();
         utenteDto.setEmailUtente(email);
         utenteDto.setPasswordUtente(password);
@@ -32,9 +39,11 @@ public class Login extends HttpServlet {
 		try {
 			utenteLoggato = utenteService.login(utenteDto);
 			
-			if(utenteLoggato != null) response.sendRedirect("login.jsp"); //redirect alla pagina
+			if(utenteLoggato != null) 
+
+				logger.info("sei già loggato"); //redirect alla pagina
 			else {
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("Signin.jsp");
 			}
 			
 		} catch (InvalidEmailException | InvalidPasswordException e) {

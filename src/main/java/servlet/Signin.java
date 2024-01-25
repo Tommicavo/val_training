@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +20,13 @@ import model.bean.UtenteBean;
 import model.dto.UtenteDto;
 import service.UtenteService;
 
+@WebServlet("/signin")
 public class Signin extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String email = request.getParameter("email");
@@ -38,14 +40,23 @@ public class Signin extends HttpServlet {
 
         UtenteService utenteService = new UtenteService();
         UtenteBean nuovoUtente = null;
-		try {
-			nuovoUtente = utenteService.signin(utenteDto);
-		} catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
-				| InvalidCognomeException | InvalidEmailException | InvalidPasswordException
-				| InvalidDataCreazioneException | InvalidDataModificaException e) {
-			e.printStackTrace();
-		}
+        String messaggio = null;
 
-        System.out.println("SigninServlet: " + nuovoUtente);
+        try {
+            nuovoUtente = utenteService.signin(utenteDto);
+            messaggio = "Registrazione avvenuta con successo!";
+        } catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
+                | InvalidCognomeException | InvalidEmailException | InvalidPasswordException
+                | InvalidDataCreazioneException | InvalidDataModificaException e) {
+            e.printStackTrace();
+            messaggio = "Errore durante la registrazione. Riprova.";
+        }
+
+        // Imposta l'attributo "messaggio" nella richiesta
+        request.setAttribute("messaggio", messaggio);
+
+        // Inoltra la richiesta alla pagina di destinazione
+        request.getRequestDispatcher("Signin.jsp").forward(request, response);
     }
 }
+
