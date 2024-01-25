@@ -22,10 +22,11 @@ import service.UtenteService;
 @WebServlet("/SigninServlet")
 public class SigninServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String email = request.getParameter("email");
@@ -41,20 +42,16 @@ public class SigninServlet extends HttpServlet {
 
         UtenteService utenteService = new UtenteService();
         UtenteBean nuovoUtente = null;
-		try {
-			nuovoUtente = utenteService.signin(utenteDto);
-			if(nuovoUtente != null) response.sendRedirect("index.jsp"); //redirect alla pagina
-			else {
-				response.sendRedirect("signup.jsp");
-			}
-		} catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
-				| InvalidCognomeException | InvalidEmailException | InvalidPasswordException
-				| InvalidDataCreazioneException | InvalidDataModificaException e) {
-			e.printStackTrace();
-		}
+        try {
+            nuovoUtente = utenteService.signin(utenteDto);
+        } catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
+                | InvalidCognomeException | InvalidEmailException | InvalidPasswordException
+                | InvalidDataCreazioneException | InvalidDataModificaException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("SigninServlet: " + nuovoUtente);
-        
+
         response.sendRedirect(request.getContextPath() + "/ShowServlet?id=" + nuovoUtente.getIdUtente());
     }
 }

@@ -30,12 +30,6 @@ public class LoginServlet extends HttpServlet {
         UtenteBean utenteLoggato = null;
 		try {
 			utenteLoggato = utenteService.login(utenteDto);
-			
-			if(utenteLoggato != null) response.sendRedirect("index.jsp"); //redirect alla pagina
-			else {
-				response.sendRedirect("login.jsp");
-			}
-			
 		} catch (InvalidEmailException | InvalidPasswordException e) {
 			e.printStackTrace();
 		}
