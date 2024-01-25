@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import exception.EmptyCognomeException;
 import exception.EmptyNomeException;
 import exception.ExistingUtenteException;
@@ -44,6 +43,10 @@ public class SigninServlet extends HttpServlet {
         UtenteBean nuovoUtente = null;
 		try {
 			nuovoUtente = utenteService.signin(utenteDto);
+			if(nuovoUtente != null) response.sendRedirect("index.jsp"); //redirect alla pagina
+			else {
+				response.sendRedirect("signup.jsp");
+			}
 		} catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
 				| InvalidCognomeException | InvalidEmailException | InvalidPasswordException
 				| InvalidDataCreazioneException | InvalidDataModificaException e) {

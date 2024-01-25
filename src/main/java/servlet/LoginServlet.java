@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import exception.InvalidEmailException;
 import exception.InvalidPasswordException;
 import model.bean.UtenteBean;
@@ -31,6 +30,12 @@ public class LoginServlet extends HttpServlet {
         UtenteBean utenteLoggato = null;
 		try {
 			utenteLoggato = utenteService.login(utenteDto);
+			
+			if(utenteLoggato != null) response.sendRedirect("index.jsp"); //redirect alla pagina
+			else {
+				response.sendRedirect("login.jsp");
+			}
+			
 		} catch (InvalidEmailException | InvalidPasswordException e) {
 			e.printStackTrace();
 		}
