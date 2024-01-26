@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DbConnection {
 
 	private String username = "root";
-	private String password = "root";
+	private String password = "admin";
 	private String url = "jdbc:mysql://localhost:3306/val_training";
 	private String driver = "com.mysql.jdbc.Driver";
 
