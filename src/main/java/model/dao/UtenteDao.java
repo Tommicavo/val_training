@@ -164,9 +164,8 @@ public class UtenteDao {
 	    return loggedUtenteBean;
 	}
 
-	// provaa
 	public UtenteBean insert(UtenteBean utenteBean) {
-		String query = "INSERT INTO utente (nome, cognome, informazioni_generali, email, password, data_creazione, data_modifica, flg_cancellato) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO utente (nome, cognome, informazioni_generali, email, password, data_creazione, data_modifica, flg_cancellato, id_ruolo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		
 		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
@@ -183,6 +182,8 @@ public class UtenteDao {
 			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setBoolean(8, utenteBean.isFlgCancellatoUtente());
+			ps.setLong(9, utenteBean.getIdRuolo());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

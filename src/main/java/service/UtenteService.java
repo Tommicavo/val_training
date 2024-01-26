@@ -60,6 +60,8 @@ public class UtenteService {
 		utenteBean.setDataCreazioneUtente(LocalDateTime.now());
 		utenteBean.setDataModificaUtente(LocalDateTime.now());
 		utenteBean.setFlgCancellatoUtente(false);
+		utenteBean.setIdRuolo(1L);
+		
 		UtenteBean nuovoUtente = utenteDao.insert(utenteBean);
 		
 		Map<String, String> successMessage = new HashMap<>();

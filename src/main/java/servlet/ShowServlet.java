@@ -23,16 +23,18 @@ public class ShowServlet extends HttpServlet {
             Long utenteId = Long.parseLong(stringUtenteId);
             
             UtenteDao utenteDao = new UtenteDao();
-            
             UtenteBean utenteBean = utenteDao.findById(utenteId);
-            
             System.out.println("ShowServlet: " + utenteBean);
 
             request.setAttribute("utente", utenteBean);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/show.jsp");
-            rd.forward(request, response);
-            
+            if (utenteBean.getIdRuolo() == 1L) {
+                RequestDispatcher rd = request.getRequestDispatcher("/dipendente.jsp");
+                rd.forward(request, response);
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("/responsabile.jsp");
+                rd.forward(request, response);
+            }
         } else {
             response.getWriter().println("<div>Dettagli utente non disponibili</div>");
         }

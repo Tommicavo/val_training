@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2 class="text-center text-danger py-3">Dettagli Utente</h2>
+		<h2 class="text-center text-danger py-3">Dettagli Dipendente</h2>
 		
 		<% UtenteBean utente=(UtenteBean)request.getAttribute("utente"); %>
 
