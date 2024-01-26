@@ -10,6 +10,7 @@ public class GruppoConverter {
 		
 		gruppoDto.setIdGruppo(gruppoBean.getIdGruppo());
 		gruppoDto.setNomeGruppo(gruppoBean.getNomeGruppo());
+		gruppoDto.setIdResponsabile(gruppoBean.getIdResponsabile());
 		
 		return gruppoDto;
 	}
@@ -19,6 +20,7 @@ public class GruppoConverter {
 		
 		gruppoBean.setIdGruppo(gruppoDto.getIdGruppo());
 		gruppoBean.setNomeGruppo(gruppoDto.getNomeGruppo());
+		gruppoBean.setIdResponsabile(gruppoDto.getIdResponsabile());
 		
 		return gruppoBean;
 	}

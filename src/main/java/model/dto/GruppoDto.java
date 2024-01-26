@@ -5,6 +5,7 @@ public class GruppoDto {
 	// Proprietà
 	private Long idGruppo;
 	private String nomeGruppo;
+	private Long idResponsabile;
 	
 	// Costruttori
 	public GruppoDto() {}
@@ -25,5 +26,11 @@ public class GruppoDto {
 	}
 	public void setNomeGruppo(String nomeGruppo) {
 		this.nomeGruppo = nomeGruppo;
+	}
+	public Long getIdResponsabile() {
+		return idResponsabile;
+	}
+	public void setIdResponsabile(Long idResponsabile) {
+		this.idResponsabile = idResponsabile;
 	}
 }

@@ -119,7 +119,8 @@ public class UtenteBean {
                 ", Email = " + getEmailUtente() +
                 ", Password = " + getPasswordUtente() +
                 ", Id Ruolo = " + getIdRuolo() +
-                ", \n Informazioni Generali = " + getInformazioniGeneraliUtente() + "}\n";
+                ", Id Gruppo = " + getIdGruppo() +
+                ", Informazioni Generali = " + getInformazioniGeneraliUtente() + "}\n";
     }
 	@Override
 	public int hashCode() {
