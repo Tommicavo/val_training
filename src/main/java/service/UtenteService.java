@@ -1,16 +1,11 @@
 package service;
 
 import java.time.LocalDateTime;
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 import java.util.HashMap;
->>>>>>> develop
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.mindrot.jbcrypt.BCrypt;
 
 import model.bean.GruppoBean;
 import model.bean.UtenteBean;

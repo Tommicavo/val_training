@@ -1,62 +1,53 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Map;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import exception.EmptyCognomeException;
-import exception.EmptyNomeException;
-import exception.ExistingUtenteException;
-import exception.InvalidCognomeException;
-import exception.InvalidDataCreazioneException;
-import exception.InvalidDataModificaException;
-import exception.InvalidEmailException;
-import exception.InvalidNomeException;
-import exception.InvalidPasswordException;
 import model.bean.UtenteBean;
 import model.dto.UtenteDto;
 import service.UtenteService;
+import utils.AuthResult;
 
 @WebServlet("/signin")
 public class Signin extends HttpServlet {
 
-    private static final long serialVersionUID = 2L;
+	 private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException {
 
-        String nome = request.getParameter("nome");
-        String cognome = request.getParameter("cognome");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+	        String nome = request.getParameter("nome");
+	        String cognome = request.getParameter("cognome");
+	        String email = request.getParameter("email");
+	        String password = request.getParameter("password");
 
-        UtenteDto utenteDto = new UtenteDto();
-        utenteDto.setNomeUtente(nome);
-        utenteDto.setCognomeUtente(cognome);
-        utenteDto.setEmailUtente(email);
-        utenteDto.setPasswordUtente(password);
+	        UtenteDto utenteDto = new UtenteDto();
+	        utenteDto.setNomeUtente(nome);
+	        utenteDto.setCognomeUtente(cognome);
+	        utenteDto.setEmailUtente(email);
+	        utenteDto.setPasswordUtente(password);
 
-        UtenteService utenteService = new UtenteService();
-        UtenteBean nuovoUtente = null;
-        String messaggio = null;
+	        UtenteService utenteService = new UtenteService();
+	        AuthResult authResult = utenteService.signin(utenteDto);
 
-        try {
-            nuovoUtente = utenteService.signin(utenteDto);
-            messaggio = "Registrazione avvenuta con successo!";
-        } catch (ExistingUtenteException | EmptyNomeException | InvalidNomeException | EmptyCognomeException
-                | InvalidCognomeException | InvalidEmailException | InvalidPasswordException
-                | InvalidDataCreazioneException | InvalidDataModificaException e) {
-            e.printStackTrace();
-            messaggio = "Errore durante la registrazione. Riprova.";
-        }
-
-        // Imposta l'attributo "messaggio" nella richiesta
-        request.setAttribute("messaggio", messaggio);
-
-        // Inoltra la richiesta alla pagina di destinazione
-        request.getRequestDispatcher("Signin.jsp").forward(request, response);
-    }
+	        if (authResult.getUtenteBean() != null) {
+	        	UtenteBean nuovoUtente = authResult.getUtenteBean();
+	        	System.out.println("SigninServlet: " + nuovoUtente);
+	        	Map<String, String> successMessage = authResult.getMessages();
+	        	System.out.println("successMessage: " + successMessage);
+	            response.sendRedirect(request.getContextPath() + "/ShowServlet?id=" + nuovoUtente.getIdUtente());
+	        } else {
+	        	Map<String, String> errorMessages = authResult.getMessages();        	
+	        	System.out.println("errorMessages: " + errorMessages);
+	            request.setAttribute("errorMessages", errorMessages);
+	            RequestDispatcher rd = request.getRequestDispatcher("/signin.jsp");
+	            rd.forward(request, response);
+	        }
+	    }
 }
 
