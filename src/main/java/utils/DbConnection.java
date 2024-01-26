@@ -11,7 +11,7 @@ public class DbConnection {
 	private String url = "jdbc:mysql://localhost:3306/val_training";
 	private String driver = "com.mysql.jdbc.Driver";
 
-=======
+
 	/*
     private String username = AppConfig.getDbUsername();
     private String password = AppConfig.getDbPassword();
@@ -19,10 +19,7 @@ public class DbConnection {
     private String driver = AppConfig.getDbDriver();
     */
 	
-	private String username = "root";
-	private String password = "root";
-	private String url = "jdbc:mysql://localhost:3306/val_training";
-	private String driver = "com.mysql.cj.jdbc.Driver";
+	
 	
 	public Connection getConnection() {
 
