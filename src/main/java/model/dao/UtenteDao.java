@@ -83,6 +83,7 @@ public class UtenteDao {
 				utenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+				utenteBean.setIdRuolo(1l);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
