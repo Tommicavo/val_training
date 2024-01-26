@@ -22,7 +22,7 @@ public class UtenteService {
 		// verifica che l'utente esista già
 		boolean isPresent = utenteDao.findByEmail(utenteDto.getEmailUtente());
 		if (isPresent) {
-			errorMessages.put("existentUtenteError", "Un utente con email: '" + utenteDto.getEmailUtente() + "' è già stato registrato");
+			errorMessages.put("existingUtenteError", "Un utente con email: '" + utenteDto.getEmailUtente() + "' è già stato registrato");
 		}
 		
 		// nome
@@ -72,6 +72,13 @@ public class UtenteService {
 		
 		Map<String, String> errorMessages = new HashMap<>();
 		
+		UtenteDao utenteDao = new UtenteDao();
+		// verifica che l'utente esista già
+		boolean isPresent = utenteDao.findByEmail(utenteDto.getEmailUtente());
+		if (!isPresent) {
+			errorMessages.put("unregisteredUtenteError", "La email: '" + utenteDto.getEmailUtente() + "' non è associata ad alcun utente");
+		}
+		
 		// email
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 		if (!Pattern.compile(emailRegex).matcher(utenteDto.getEmailUtente()).matches()) {
@@ -90,7 +97,6 @@ public class UtenteService {
 		
 		UtenteConverter utenteConverter = new UtenteConverter();
 		UtenteBean utenteBean = utenteConverter.toBean(utenteDto);
-		UtenteDao utenteDao = new UtenteDao();
 		UtenteBean utenteLoggato = utenteDao.findByEmailAndPassword(utenteBean);
 		
 		Map<String, String> successMessage = new HashMap<>();
