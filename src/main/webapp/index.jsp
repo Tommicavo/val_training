@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center py-3">Hello World!</h2>
+        <h2 class="text-center py-3">Benvenuto!</h2>
         <div class="homeBtns d-flex justify-content-between">
             <div> <a class="btn btn-primary" href="signin.jsp">Signin Page</a> </div>
             <div> <a class="btn btn-primary" href="login.jsp">Login Page</a> </div>

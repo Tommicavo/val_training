@@ -84,6 +84,7 @@ public class UtenteDao {
 				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
 				utenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+				utenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
