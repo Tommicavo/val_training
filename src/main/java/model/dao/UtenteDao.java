@@ -42,6 +42,8 @@ public class UtenteDao {
 				utenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+				utenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+				utenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 				
 				utenti.add(utenteBean);
 			}
@@ -83,6 +85,8 @@ public class UtenteDao {
 				utenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+				utenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+				utenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -153,6 +157,8 @@ public class UtenteDao {
 	                loggedUtenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 	                loggedUtenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 	                loggedUtenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+	                loggedUtenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+	                loggedUtenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 	            }
 	        }
 	    } catch (SQLException e) {
