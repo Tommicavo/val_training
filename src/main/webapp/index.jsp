@@ -1,22 +1,18 @@
-<html>
-	<head>
-	</head>
-	    <script>
-        // Funzione chiamata quando si clicca sul primo bottone
-        function redirectLoginPage() {
-            window.location.href = "Login.jsp";
-        }
-
-        // Funzione chiamata quando si clicca sul secondo bottone
-        function redirectSigninPage() {
-            window.location.href = "Signin.jsp";
-        }
-    </script>
-	<body>
-		<h1>scegli una delle opzioni</h1>
-    <button id="button1" onclick="redirectLoginPage()">Login</button>
-
-    <button id="button2" onclick="redirectSigninPage()">Signin</button>
-	</body>
-	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center py-3">Hello World!</h2>
+        <div class="homeBtns d-flex justify-content-between">
+            <div> <a class="btn btn-primary" href="signin.jsp">Signin Page</a> </div>
+            <div> <a class="btn btn-primary" href="login.jsp">Login Page</a> </div>
+        </div>
+    </div>
+</body>
 </html>
