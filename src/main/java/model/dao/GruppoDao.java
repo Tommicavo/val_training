@@ -37,7 +37,7 @@ public class GruppoDao {
 		return gruppi;
 	}
 	
-	public GruppoBean findById(Long id) throws SQLException {
+	public GruppoBean findById(Long id) {
 		String query = "SELECT * FROM gruppo WHERE id_gruppo=?;";
 		
 		DbConnection dbCon = new DbConnection();
@@ -74,8 +74,35 @@ public class GruppoDao {
 	}
 	
 	public boolean findByName(String nome) {
-		return false;
-	}
+		String query = "SELECT COUNT(*) FROM gruppo WHERE nome=?;";
+		
+		DbConnection dbCon = new DbConnection();
+		Connection con = dbCon.getConnection();
+		
+		PreparedStatement ps = null;
+		try {
+			ps = con.prepareStatement(query);
+			ps.setString(1, nome);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	    ResultSet rs;
+	    int count = 0;
+	    try {
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    dbCon.closeConnection(con);
+	    
+	    return count > 0;
+	} 
 	
 	public String deleteById(Long id) throws SQLException {
 		String query = "DELETE FROM gruppo WHERE id_gruppo = ?";

@@ -35,18 +35,14 @@ public class GruppoServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+		UtenteDao utenteDao = new UtenteDao();
+		
+    	List<UtenteBean> utentiSenzaGruppo = utenteDao.findAllGroupless();
 		String[] strIdUtentiDaAggiungere = request.getParameterValues("utentiDaAggiungere");
         String nomeGruppo = request.getParameter("nomeGruppo");
         String strIdResponsabile = request.getParameter("idResponsabile");
         Long idResponsabile = Long.valueOf(strIdResponsabile);
-        
-        System.out.println("Nome gruppo: " + nomeGruppo);
-        System.out.println("Id Responsabile: " + idResponsabile);  
-        System.out.println("Utenti Id da aggiungere al gruppo:");
-        for (String u : strIdUtentiDaAggiungere) {
-        	System.out.println(u);
-        }         
-        
+                
         // Creazione nuovo gruppo
         GruppoDto gruppoDto = new GruppoDto();
         gruppoDto.setNomeGruppo(nomeGruppo);
@@ -55,24 +51,19 @@ public class GruppoServlet extends HttpServlet {
         GruppoService gruppoService = new GruppoService();
         GroupResult groupResult = gruppoService.insertGruppo(gruppoDto);
         
-        System.out.println("Servlet Nuovo Gruppo: " + groupResult.getGruppoBean());
-        
         if (groupResult.getGruppoBean() != null) {
         	Map<String, String> successMessage = groupResult.getMessages();
         	System.out.println(successMessage);
         	
         	// assegno l'id del nuovo gruppo al responsabile e a tutti i partecipanti del gruppo
-        	UtenteDao utenteDao = new UtenteDao();
         	UtenteBean responsabile = utenteDao.findById(idResponsabile);
-        	
-        	System.out.println("Responsabile: " + responsabile);
         	
         	if (responsabile != null) {
         		responsabile.setIdGruppo(groupResult.getGruppoBean().getIdGruppo());
         		utenteDao.update(responsabile);
         	}
         	
-        	if (strIdUtentiDaAggiungere.length > 0) {
+        	if (strIdUtentiDaAggiungere != null) {
             	for (String strId : strIdUtentiDaAggiungere) {
             		Long idUtenteDaAggiungere = Long.valueOf(strId);
             		UtenteBean utenteDaAggiungere = utenteDao.findById(idUtenteDaAggiungere);
@@ -80,11 +71,12 @@ public class GruppoServlet extends HttpServlet {
             		utenteDao.update(utenteDaAggiungere);
             	}
         	}
-
         } else {
         	Map<String, String> errorMessages = groupResult.getMessages();
         	System.out.println("errorMessages: " + errorMessages);
             request.setAttribute("errorMessages", errorMessages);
+            request.setAttribute("idResponsabile", strIdResponsabile);
+            request.setAttribute("utentiSenzaGruppo", utentiSenzaGruppo);
             RequestDispatcher rd = request.getRequestDispatcher("/gruppo.jsp");
             rd.forward(request, response);
         }        

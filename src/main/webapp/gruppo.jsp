@@ -56,7 +56,6 @@
                 <p>Nessun utente senza gruppo...</p>
             <% } %>
 
-            <%-- Submit button --%>
             <div class="d-flex justify-content-between">
                 <button class="btn btn-success" type="submit">Crea Gruppo</button>
                 <a class="btn btn-primary" href="index.jsp">Home Page</a>
