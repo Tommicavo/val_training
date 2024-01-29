@@ -50,7 +50,6 @@ public class ShowServlet extends HttpServlet {
             if (utenteBean.getIdGruppo() != null) {
             	GruppoDao gruppoDao = new GruppoDao();
             	GruppoBean gruppoBean = gruppoDao.findById(utenteBean.getIdGruppo());
-            	System.out.println("Gruppo: " + gruppoBean);
             	request.setAttribute("gruppo", gruppoBean);
             }
             

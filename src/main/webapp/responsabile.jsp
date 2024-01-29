@@ -36,14 +36,18 @@
 						</form>
 					<% } else { %>
 						<div>
-							<span>Fai parte del gruppo </span>
-							<span> <%= gruppoBean.getNomeGruppo() %> </span>
+							<span>Fai parte del gruppo: </span>
+							<span><strong> <%= gruppoBean.getNomeGruppo() %> </strong></span>
 						</div>
 					<% } %>
 				</div>
 				<div class="d-flex justify-content-between">
 					<a class="btn btn-primary" href="index.jsp">Home Page</a>
-					<a class="btn btn-success" href="index.jsp">Scarica Pdf</a>
+					<form action="/val_training_test/PdfServlet" method="GET" novalidate>
+						<input type="hidden" name="idUtente" value="<%=utente.getIdUtente()%>">
+						<input type="hidden" name="idGruppo" value="<%=gruppoBean.getIdGruppo()%>">
+						<button type="submit" class="btn btn-success">Scarica Pdf</button>
+					</form>
 				</div>
 			</div>
 		</div>					

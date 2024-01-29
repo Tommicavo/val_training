@@ -71,6 +71,9 @@ public class GruppoServlet extends HttpServlet {
             		utenteDao.update(utenteDaAggiungere);
             	}
         	}
+        	
+        	response.sendRedirect(request.getContextPath() + "/ShowServlet?id=" + responsabile.getIdUtente());
+        	
         } else {
         	Map<String, String> errorMessages = groupResult.getMessages();
         	System.out.println("errorMessages: " + errorMessages);
