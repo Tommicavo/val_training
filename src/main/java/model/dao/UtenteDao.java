@@ -226,8 +226,6 @@ public class UtenteDao {
 			ps.setString(3, utenteBean.getInformazioniGeneraliUtente());
 			ps.setString(4, utenteBean.getEmailUtente());
 			ps.setString(5, BCrypt.hashpw(utenteBean.getPasswordUtente(), FIXED_SALT));
-			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
 			ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataCreazioneUtente()));
 			ps.setTimestamp(7, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
 			ps.setBoolean(8, utenteBean.isFlgCancellatoUtente());
@@ -257,7 +255,6 @@ public class UtenteDao {
 	}
 	
 	public int update(UtenteBean utenteBean) {
-	    String query = "UPDATE utente SET nome=?, cognome=?, informazioni_generali=?, email=?, password=?, data_modifica=?, flg_cancellato=? WHERE id_utente=?";
 	    String query = "UPDATE utente SET nome=?, cognome=?, informazioni_generali=?, email=?, password=?, data_modifica=?, flg_cancellato=?, id_ruolo=?, id_gruppo=? WHERE id_utente=?";
 	    
 	    DbConnection dbCon = new DbConnection();
@@ -274,7 +271,6 @@ public class UtenteDao {
 	        ps.setString(5, utenteBean.getPasswordUtente());
 	        ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
 	        ps.setBoolean(7, utenteBean.isFlgCancellatoUtente());
-	        ps.setLong(8, utenteBean.getIdUtente());
 	        ps.setLong(8, utenteBean.getIdRuolo());
 	        ps.setLong(9, utenteBean.getIdGruppo());
 	        ps.setLong(10, utenteBean.getIdUtente());
