@@ -67,4 +67,5 @@ public class ShowServlet extends HttpServlet {
             response.getWriter().println("<div>Dettagli utente non disponibili</div>");
         }
     }
+    }
 }
