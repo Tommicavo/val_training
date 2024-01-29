@@ -18,8 +18,18 @@
 		<div class="card mx-auto" style="width: 18rem;">
 			<div class="card-body">
 				<h5 class="card-title"><%=utente.getIdUtente()%> - <%=utente.getNomeUtente()%> <%=utente.getCognomeUtente()%></h5>
-				<p class="card-text"><%=utente.getInformazioniGeneraliUtente()%></p>
-				<a class="btn btn-primary" href="index.jsp">Home Page</a>
+				<div class="email">
+					<span>Email: </span>
+					<span><%=utente.getEmailUtente()%></span>
+				</div>
+				<div class="info py-4">
+					<span>Informazioni Generali: </span>
+					<span><%=utente.getInformazioniGeneraliUtente()%></span>
+				</div>
+				<div class="d-flex justify-content-between pt-4">
+					<a class="btn btn-primary" href="index.jsp">Home Page</a>
+					<a class="btn btn-success" href="index.jsp">Scarica Pdf</a>
+				</div>
 			</div>
 		</div>				
 	</div>
