@@ -53,16 +53,10 @@
 					class="form-control" type="email" id="email" name="email"
 					placeholder="Inserisci l'email"
 					value="<%=request.getParameter("email") != null ? request.getParameter("email") : ""%>">
-				<%
-				String invalidEmailError = errorMessages.get("invalidEmailError");
-				%>
-				<%
-				if (invalidEmailError != null && !invalidEmailError.isEmpty()) {
-				%>
-				<small class="text-danger"><%=invalidEmailError%></small>
-				<%
-				}
-				%>
+				<% String invalidEmailError = errorMessages.get("invalidEmailError"); %>
+				<% if (invalidEmailError != null && !invalidEmailError.isEmpty()) { %>
+					<small class="text-danger"><%=invalidEmailError%></small>
+				<% } %>
 			</div>
 
 			<div class="mb-3">

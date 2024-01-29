@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.bean.GruppoBean;
 import model.bean.UtenteBean;
+import model.dao.GruppoDao;
 import model.dao.UtenteDao;
 
 @WebServlet("/ShowServlet")
@@ -43,6 +46,19 @@ public class ShowServlet extends HttpServlet {
                     // Gestisci il caso in cui idRuolo è null
                     response.getWriter().println("<div>Dettagli utente non disponibili</div>");
                 }
+            
+            if (utenteBean.getIdGruppo() != null) {
+            	GruppoDao gruppoDao = new GruppoDao();
+            	GruppoBean gruppoBean = gruppoDao.findById(utenteBean.getIdGruppo());
+            	System.out.println("Gruppo: " + gruppoBean);
+            	request.setAttribute("gruppo", gruppoBean);
+            }
+            
+            request.setAttribute("utente", utenteBean);
+            
+            if (utenteBean.getIdRuolo() == 1L) {
+                RequestDispatcher rd = request.getRequestDispatcher("/dipendente.jsp");
+                rd.forward(request, response);
             } else {
                 // Gestisci il caso in cui utenteBean è null
                 response.getWriter().println("<div>Utente non trovato</div>");

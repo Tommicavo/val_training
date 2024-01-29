@@ -39,7 +39,7 @@ public class SigninServlet extends HttpServlet {
         	UtenteBean nuovoUtente = authResult.getUtenteBean();
         	System.out.println("SigninServlet: " + nuovoUtente);
         	Map<String, String> successMessage = authResult.getMessages();
-        	System.out.println("successMessage: " + successMessage);
+        	System.out.println(successMessage);
             response.sendRedirect(request.getContextPath() + "/ShowServlet?id=" + nuovoUtente.getIdUtente());
         } else {
         	Map<String, String> errorMessages = authResult.getMessages();        	
