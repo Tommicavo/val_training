@@ -5,13 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-	
+
+	private String username = "root";
+	private String password = "admin";
+	private String url = "jdbc:mysql://localhost:3306/val_training";
+	private String driver = "com.mysql.jdbc.Driver";
+
+
+	/*
     private String username = AppConfig.getDbUsername();
     private String password = AppConfig.getDbPassword();
     private String url = AppConfig.getDbUrl();
     private String driver = AppConfig.getDbDriver();
-
-
+    */
+	
+	
+	
 	public Connection getConnection() {
 
 		Connection con = null;
