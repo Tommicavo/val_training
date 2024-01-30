@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.bean.GruppoBean;
 import model.bean.UtenteBean;
+import model.dao.GruppoDao;
 import model.dao.UtenteDao;
 
 @WebServlet("/ShowServlet")
@@ -25,7 +28,13 @@ public class ShowServlet extends HttpServlet {
             UtenteDao utenteDao = new UtenteDao();
             UtenteBean utenteBean = utenteDao.findById(utenteId);
             System.out.println("ShowServlet: " + utenteBean);
-
+            
+            if (utenteBean.getIdGruppo() != null) {
+            	GruppoDao gruppoDao = new GruppoDao();
+            	GruppoBean gruppoBean = gruppoDao.findById(utenteBean.getIdGruppo());
+            	request.setAttribute("gruppo", gruppoBean);
+            }
+            
             request.setAttribute("utente", utenteBean);
             
             if (utenteBean.getIdRuolo() == 1L) {

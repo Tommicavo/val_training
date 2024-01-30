@@ -11,6 +11,7 @@ public class GruppoBean {
 	private LocalDateTime dataCreazioneGruppo;
 	private LocalDateTime dataModificaGruppo;
 	private boolean flgCancellatoGruppo;
+	private Long idResponsabile;
 	
 	// Costruttori
 	public GruppoBean() {}
@@ -55,12 +56,19 @@ public class GruppoBean {
 	public void setFlgCancellatoGruppo(boolean flgCancellatoGruppo) {
 		this.flgCancellatoGruppo = flgCancellatoGruppo;
 	}
-	
+	public Long getIdResponsabile() {
+		return idResponsabile;
+	}
+	public void setIdResponsabile(Long idResponsabile) {
+		this.idResponsabile = idResponsabile;
+	}
+
 	@Override
     public String toString() {
         return "Gruppo: {" +
                 "Id = " + getIdGruppo() +
-                ", Nome = " + getNomeGruppo() + "}\n";
+                ", Nome = " + getNomeGruppo() +
+                ", Id Responsabile = " + getIdResponsabile() + "}\n";
     }
 	@Override
 	public int hashCode() {

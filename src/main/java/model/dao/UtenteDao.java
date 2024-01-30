@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
@@ -42,6 +41,8 @@ public class UtenteDao {
 				utenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+				utenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+				utenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 				
 				utenti.add(utenteBean);
 			}
@@ -52,6 +53,46 @@ public class UtenteDao {
 		dbCon.closeConnection(con);
 		
 		return utenti;
+	}
+	
+	public List<UtenteBean> findAllGroupless() {
+		String query = "SELECT * FROM utente WHERE id_gruppo IS NULL AND id_ruolo=1;";
+		
+		DbConnection dbCon = new DbConnection();
+		Connection con = dbCon.getConnection();
+		
+		Statement st = null;
+		List<UtenteBean> utentiSenzaGruppo = new ArrayList<>();
+		
+		try {
+			st = con.createStatement();
+			
+			ResultSet rs = st.executeQuery(query);
+			
+			while (rs.next()) {
+				UtenteBean utenteBean = new UtenteBean();
+				
+				utenteBean.setIdUtente(rs.getLong("id_utente"));
+				utenteBean.setNomeUtente(rs.getString("nome"));
+				utenteBean.setCognomeUtente(rs.getString("cognome"));
+				utenteBean.setInformazioniGeneraliUtente(rs.getString("informazioni_generali"));
+				utenteBean.setEmailUtente(rs.getString("email"));
+				utenteBean.setPasswordUtente(rs.getString("password"));
+				utenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
+				utenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
+				utenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+				utenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+				utenteBean.setIdGruppo(rs.getLong("id_gruppo"));
+				
+				utentiSenzaGruppo.add(utenteBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		dbCon.closeConnection(con);
+		
+		return utentiSenzaGruppo;
 	}
 	
 	public UtenteBean findById(Long id) {
@@ -155,6 +196,8 @@ public class UtenteDao {
 	                loggedUtenteBean.setDataCreazioneUtente(rs.getTimestamp("data_creazione").toLocalDateTime());
 	                loggedUtenteBean.setDataModificaUtente(rs.getTimestamp("data_modifica").toLocalDateTime());
 	                loggedUtenteBean.setFlgCancellatoUtente(rs.getBoolean("flg_cancellato"));
+	                loggedUtenteBean.setIdRuolo(rs.getLong("id_ruolo"));
+	                loggedUtenteBean.setIdGruppo(rs.getLong("id_gruppo"));
 	            }
 	        }
 	    } catch (SQLException e) {
@@ -181,8 +224,8 @@ public class UtenteDao {
 			ps.setString(3, utenteBean.getInformazioniGeneraliUtente());
 			ps.setString(4, utenteBean.getEmailUtente());
 			ps.setString(5, BCrypt.hashpw(utenteBean.getPasswordUtente(), FIXED_SALT));
-			ps.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
-			ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+			ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataCreazioneUtente()));
+			ps.setTimestamp(7, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
 			ps.setBoolean(8, utenteBean.isFlgCancellatoUtente());
 			ps.setLong(9, utenteBean.getIdRuolo());
 			
@@ -210,7 +253,7 @@ public class UtenteDao {
 	}
 	
 	public int update(UtenteBean utenteBean) {
-	    String query = "UPDATE utente SET nome=?, cognome=?, informazioni_generali=?, email=?, password=?, data_modifica=?, flg_cancellato=? WHERE id_utente=?";
+	    String query = "UPDATE utente SET nome=?, cognome=?, informazioni_generali=?, email=?, password=?, data_modifica=?, flg_cancellato=?, id_ruolo=?, id_gruppo=? WHERE id_utente=?";
 	    
 	    DbConnection dbCon = new DbConnection();
 	    Connection con = dbCon.getConnection();
@@ -226,7 +269,9 @@ public class UtenteDao {
 	        ps.setString(5, utenteBean.getPasswordUtente());
 	        ps.setTimestamp(6, Timestamp.valueOf(utenteBean.getDataModificaUtente()));
 	        ps.setBoolean(7, utenteBean.isFlgCancellatoUtente());
-	        ps.setLong(8, utenteBean.getIdUtente());
+	        ps.setLong(8, utenteBean.getIdRuolo());
+	        ps.setLong(9, utenteBean.getIdGruppo());
+	        ps.setLong(10, utenteBean.getIdUtente());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -7,6 +7,7 @@ public class RuoloBean {
 	// Proprietà
 	private Long idRuolo;
 	private String nomeRuolo;
+	private Long idResponsabile;
 	
 	// Costruttori
 	public RuoloBean() {}
@@ -28,7 +29,12 @@ public class RuoloBean {
 	public void setNomeRuolo(String nomeRuolo) {
 		this.nomeRuolo = nomeRuolo;
 	}
-	
+	public Long getIdResponsabile() {
+		return idResponsabile;
+	}
+	public void setIdResponsabile(Long idResponsabile) {
+		this.idResponsabile = idResponsabile;
+	}
 	@Override
     public String toString() {
         return "Ruolo: {" +
